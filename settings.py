@@ -7,6 +7,9 @@ class Settings:
         self.screen_width = 1920
         self.screen_height = 1080
         self.bg_colour = (13, 17, 23)
+        #A and D to move left and right respectively
         self.right_move = pygame.K_d
-        self.left_move = pygame.K_a
+        self.left_move = pygame.K_a 
+        #Q to quit
+        self.quit = pygame.K_q 
         self.ship_speed = 8
