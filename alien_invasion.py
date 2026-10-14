@@ -18,14 +18,25 @@ class AlienInvasion:
         """To start the main loop of the game"""
 
         while True:
-            self.check_event()
+            self.check_events()
+            self.ship.update()
             self.update_screen()
             self.clock.tick(60)
 
-    def check_event(self):
+    def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == self.settings.right_move:
+                    self.ship.moving_right = True
+                elif event.key == self.settings.left_move:
+                    self.ship.moving_left = True
+            elif event.type == pygame.KEYUP:
+                if event.key == self.settings.right_move:
+                    self.ship.moving_right = False
+                if event.key == self.settings.left_move:
+                    self.ship.moving_left = False
 
     def update_screen(self):
         pygame.display.flip()
