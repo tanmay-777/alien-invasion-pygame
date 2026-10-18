@@ -2,6 +2,7 @@ import sys
 from settings import Settings
 import pygame
 from ship import Ship
+from bullet import Bullet
 
 class AlienInvasion:
     """Overall class to run this game"""
@@ -13,13 +14,14 @@ class AlienInvasion:
             (self.settings.screen_width,self.settings.screen_height))
         pygame.display.set_caption("Alien Invaders")
         self.ship = Ship(self)
-
+        self.bullets = pygame.sprite.Group()
     def run_game(self):
         """To start the main loop of the game"""
 
         while True:
             self.check_events()
             self.ship.update()
+            self.bullets.update()
             self.update_screen()
             self.clock.tick(60)
 
@@ -35,9 +37,11 @@ class AlienInvasion:
             
 
     def update_screen(self):
-        pygame.display.flip()
         self.screen.fill(self.settings.bg_colour)
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.ship.blitme()
+        pygame.display.flip()
 
     def check_keydown_event(self,event):
         if event.key == self.settings.right_move:
@@ -46,6 +50,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == self.settings.quit:
             sys.exit()
+        elif event.key == self.settings.fire:
+            self._fire_bullets()
 
     def check_keyup_event(self,event):
         if event.key == self.settings.right_move:
@@ -53,7 +59,9 @@ class AlienInvasion:
         elif event.key == self.settings.left_move:
             self.ship.moving_left = False
 
-
+    def _fire_bullets(self):
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
 if __name__ == "__main__":
     ai = AlienInvasion()

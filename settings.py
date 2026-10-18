@@ -11,5 +11,12 @@ class Settings:
         self.right_move = pygame.K_d
         self.left_move = pygame.K_a 
         #Q to quit
-        self.quit = pygame.K_q 
+        self.quit = pygame.K_q
+        self.fire = pygame.K_SPACE 
         self.ship_speed = 8
+
+        #bullet's settings
+        self.bullet_speed = 12
+        self.bullet_width = 3
+        self.bullet_height = 18
+        self.bullet_colour = (0,240,255)
