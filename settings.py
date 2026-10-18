@@ -6,13 +6,13 @@ class Settings:
         #screen settings
         self.screen_width = 1920
         self.screen_height = 1080
-        self.bg_colour = (13, 17, 23)
+        self.bg_colour = (48, 50, 58)
         #A and D to move left and right respectively
         self.right_move = pygame.K_d
         self.left_move = pygame.K_a 
         #Q to quit
         self.quit = pygame.K_q
-        self.fire = pygame.K_SPACE 
+        self.fire = pygame.K_SPACE
         self.ship_speed = 8
 
         #bullet's settings
@@ -20,3 +20,4 @@ class Settings:
         self.bullet_width = 3
         self.bullet_height = 18
         self.bullet_colour = (0,240,255)
+        self.bullet_allowed = 3
