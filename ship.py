@@ -34,3 +34,7 @@ class Ship:
             self.x -= self.settings.ship_speed
 
         self.rect.x = self.x
+
+    def center_ship(self):
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x) #to reset the x coords to start tracking ship from middle of screen again

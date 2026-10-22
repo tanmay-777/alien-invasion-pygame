@@ -13,17 +13,21 @@ class Settings:
         #Q to quit
         self.quit = pygame.K_q
         self.fire = pygame.K_SPACE
+        #ship settings
         self.ship_speed = 8
+        self.ship_limit = 3
 
         #bullet's settings
-        self.bullet_speed = 12
-        self.bullet_width = 3
-        self.bullet_height = 18
-        self.bullet_colour = (0,240,255)
+        self.speed = 9 #common speed for both
+        self.alien_bullet_speed = 12 
+        self.bullet_speed = 9 #12
+        self.bullet_width = 300 #3
+        self.bullet_height = 5 #18
+        self.bullet_colour = (255, 220, 40)
         self.bullet_allowed = 3
 
         #alien fleet settings
-        self.alien_speed = 1.0
-        self.fleet_drop_speed = 10
+        self.alien_speed = 1
+        self.fleet_drop_speed = 200 #10
         self.fleet_direction = 1 #1 means right and -1 means left
         
