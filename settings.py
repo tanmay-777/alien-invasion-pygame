@@ -13,7 +13,9 @@ class Settings:
         #Q to quit
         self.quit = pygame.K_q
         self.fire = pygame.K_SPACE
+        #ship settings
         self.ship_speed = 8
+        self.ship_limit = 3
 
         #bullet's settings
         self.speed = 9 #common speed for both
