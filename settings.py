@@ -22,7 +22,7 @@ class Settings:
         self.speed = 9 #common speed for both
         self.alien_bullet_speed = 12 
         
-        self.bullet_width = 3 #3
+        self.bullet_width = 300 #3
         self.bullet_height = 18 #18
         self.bullet_colour = (255, 220, 40)
         self.bullet_allowed = 3
@@ -39,6 +39,8 @@ class Settings:
         self.ship_speed = 7.0
         self.bullet_speed = 9.0 #12
 
+        self.alien_points = 50
+        self.score_scale = 1.5
         self.fleet_direction = 1 #1 means right and -1 means left
 
     def easy_mode(self):
@@ -60,3 +62,6 @@ class Settings:
         self.alien_speed *= self.speedup_scale
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
+
+        self.alien_points = int(self.alien_points * self.score_scale)
+        print(self.alien_points)

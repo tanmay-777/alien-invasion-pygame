@@ -6,6 +6,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
+from scoreboard import Scoreboard
 
 from time import sleep
 
@@ -32,6 +33,7 @@ class AlienInvasion:
         self._create_fleet()
         self.alien_bullets = pygame.sprite.Group()
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
         self.game_active = False
         self.show_difficulty_buttons = False
 
@@ -154,6 +156,7 @@ class AlienInvasion:
 
     def _start_game(self):
         self.stats.reset_stats()
+        self.sb.prep_score()
         self.game_active = True
         
         self.aliens.empty()
@@ -213,8 +216,10 @@ class AlienInvasion:
             bullet.draw_bullet()
         for bullet in self.alien_bullets.sprites():
             bullet.draw_bullet()
-        self.ship.blitme()
-        self.aliens.draw(self.screen)
+        if self.game_active:
+            self.ship.blitme()
+            self.sb.show_score()
+            self.aliens.draw(self.screen)
         if not self.game_active:
             if not self.show_difficulty_buttons:
                 self.play_button.draw_button()
@@ -258,6 +263,10 @@ class AlienInvasion:
     def _check_bullet_alien_collision(self):
         #to check for collisions
         collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
+        if collisions:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+            self.sb.prep_score()
 
         #check if fleet empty, recreate it
         if not self.aliens:
