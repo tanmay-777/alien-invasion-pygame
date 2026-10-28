@@ -22,7 +22,7 @@ class Settings:
         self.speed = 9 #common speed for both
         self.alien_bullet_speed = 12 
         
-        self.bullet_width = 300 #3
+        self.bullet_width = 4 #3
         self.bullet_height = 18 #18
         self.bullet_colour = (255, 220, 40)
         self.bullet_allowed = 3
@@ -64,4 +64,4 @@ class Settings:
         self.bullet_speed *= self.speedup_scale
 
         self.alien_points = int(self.alien_points * self.score_scale)
-        print(self.alien_points)
+        

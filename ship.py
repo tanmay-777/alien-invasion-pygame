@@ -1,8 +1,10 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship:
+class Ship(Sprite):
     def __init__(self, ai_game):
         """Initilize ship and its starting position"""
+        super().__init__()
         #load in the screen dimentional hitbox
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
@@ -24,6 +26,7 @@ class Ship:
         """Draws the ship"""
         self.screen.blit(self.image,self.rect)
 
+    
     
     
     def update(self):
