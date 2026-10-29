@@ -7,6 +7,7 @@ from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
 from scoreboard import Scoreboard
+from stars import Star
 
 from time import sleep
 
@@ -27,6 +28,7 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width,self.settings.screen_height))
         self.screen_rect = self.screen.get_rect()
+        self._create_star_background()
         pygame.display.set_caption("Alien Invaders")
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -43,7 +45,7 @@ class AlienInvasion:
         self.ship_explosion = pygame.mixer.Sound("sounds/ship_explosion.wav")
 
         self.laser_sound.set_volume(0.20)
-        self.explosion_sound.set_volume(0.20)
+        self.explosion_sound.set_volume(0.22)
         self.alien_laser_sound.set_volume(0.09)
         self.ship_explosion.set_volume(0.35)
 
@@ -103,6 +105,31 @@ class AlienInvasion:
         else:
             self.game_active = False
             pygame.mouse.set_visible(True)
+
+
+    def _create_star_background(self): #surface creates a invis canvas over screen
+        self.background = pygame.Surface((self.settings.screen_width, self.settings.screen_height))
+        self.background.fill(self.settings.bg_colour) 
+
+        temp_stars = pygame.sprite.Group()
+
+        sample_stars = Star(self)
+        star_width, star_height = sample_stars.rect.size
+        current_x , current_y = 0,0
+
+        while current_y < (self.settings.screen_height ):
+            while current_x < (self.settings.screen_width ):
+                new_star = Star(self)
+                new_star.rect.x = current_x + random.randint(-25,25)
+                new_star.rect.y = current_y + random.randint(-20,20)
+                temp_stars.add(new_star)
+                current_x += 2*star_width
+            current_x = star_width
+            current_y += 2 * star_height
+
+        temp_stars.draw(self.background)
+        del temp_stars
+
 
 
     def _fire_alien_bullets(self):
@@ -234,7 +261,8 @@ class AlienInvasion:
             
 
     def update_screen(self):
-        self.screen.fill(self.settings.bg_colour)
+        self.screen.blit(self.background, (0,0))
+
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         for bullet in self.alien_bullets.sprites():
@@ -244,6 +272,8 @@ class AlienInvasion:
             self.sb.show_score()
             self.aliens.draw(self.screen)
         if not self.game_active:
+            self.screen.blit(self.sb.dev_image, self.sb.dev_rect)
+            self.screen.blit(self.sb.music_image, self.sb.music_rect)
             if not self.show_difficulty_buttons:
                 self.play_button.draw_button()
             else: 

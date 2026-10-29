@@ -6,7 +6,7 @@ class Settings:
         #screen settings
         self.screen_width = 1920
         self.screen_height = 1080
-        self.bg_colour = (48, 50, 58)
+        self.bg_colour = (0,0,0)
         #A and D to move left and right respectively
         self.right_move = pygame.K_d
         self.left_move = pygame.K_a 
@@ -24,7 +24,7 @@ class Settings:
         
         self.bullet_width = 4 #3
         self.bullet_height = 18 #18
-        self.bullet_colour = (255, 220, 40)
+        self.bullet_colour = (255, 230, 0)
         self.bullet_allowed = 3
 
         #alien fleet settings

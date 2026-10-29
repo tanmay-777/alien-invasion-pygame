@@ -14,6 +14,17 @@ class Scoreboard:
 
         self.text_colour = (57, 255, 20)
         self.font = pygame.font.Font("fonts/press_start_2p.ttf", 25)
+        credit_font = pygame.font.Font("fonts/press_start_2p.ttf", 14)
+
+        # Developer attribution
+        self.dev_image = credit_font.render("Made by Tanmay-777", True, self.text_colour)
+        self.dev_rect = self.dev_image.get_rect()
+        self.dev_rect.bottomright = (self.settings.screen_width - 20, self.settings.screen_height - 35)
+
+        # Music attribution
+        self.music_image = credit_font.render('Music "CORE" by Toby Fox', True, self.text_colour)
+        self.music_rect = self.music_image.get_rect()
+        self.music_rect.bottomright = (self.settings.screen_width - 20, self.settings.screen_height - 15)
         self.prep_high_score()
         self.prep_score()
         self.prep_level()
@@ -41,6 +52,7 @@ class Scoreboard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        
         self.ships.draw(self.screen)
 
     def prep_high_score(self):
