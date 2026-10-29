@@ -12,7 +12,7 @@ from stars import Star
 from time import sleep
 
 import random
-
+ #just to commit 
 
 #"spritecollideany" checks collisions for one single sprite against a group, 
 #"groupcollide" checks collisions between two entire groups.
@@ -129,6 +129,7 @@ class AlienInvasion:
 
         temp_stars.draw(self.background)
         del temp_stars
+
 
 
 
