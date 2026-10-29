@@ -2,7 +2,9 @@
 
 A 2D retro arcade shoot 'em up built with Python and Pygame. Defend against descending alien formations across escalating difficulty tiers, track live telemetry on the scoreboard, and compete for the high score against a procedurally generated starfield.
 
-![Gameplay Screenshot](images/gameplay.png)
+| Title & Menu Screen | Active Gameplay |
+| :---: | :---: |
+| ![Menu Screen](images/menu_screen.png) | ![Gameplay Screen](images/gameplay.png) |
 
 ---
 
